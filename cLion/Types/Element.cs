@@ -13,11 +13,14 @@ namespace cLion.Types
 
         }
 
-        public Element(Node sNode, Node eNode, Material m, Section s, )
+
+        
+        //public Element(Node sNode, Node eNode, Material m, Section s, )
 
         public virtual object Clone()
         {
-            return new Element()
+            return new Element();
         }
+        
     }
 }

@@ -73,6 +73,7 @@ namespace CIFem_grasshopper
 
             ///// SOLVE /////
 
+            /*
             double factor = Utilities.GetScalingFactorFromRhino();
 
             WR_XYZ wrXYZ = new WR_XYZ(pt.X * factor, pt.Y * factor, pt.Z * factor);
@@ -84,17 +85,20 @@ namespace CIFem_grasshopper
             WR_Restraint rest = new WR_Restraint(wrPl, rels[0], rels[1], rels[2], rels[3], rels[4], rels[5]);
 
             WR_INode node = new WR_Node3d(pt.X * factor, pt.Y * factor, pt.Z * factor, rest);
+            
 
             ///// OUTPUTS /////
             DA.SetData(0, node);
+            */
         }
 
-
+        /*
         private WR_Vector GetUnitizedWR_Vector(Rhino.Geometry.Vector3d rhVec)
         {
             rhVec.Unitize();
             return new WR_Vector(rhVec.X, rhVec.Y, rhVec.Z);
         }
+        */
 
         /*
         protected override Bitmap Icon
