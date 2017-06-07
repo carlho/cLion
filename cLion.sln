@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cLion", "cLion\cLion.csproj", "{C9BFE099-BFAE-4F71-95A8-E3DACFC6A40A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwecoTools", "..\SwecoTools\SwecoTools.csproj", "{F108C287-E7ED-407C-8E25-6CDE73BF5DFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwecoTools", "SwecoTools\SwecoTools.csproj", "{F108C287-E7ED-407C-8E25-6CDE73BF5DFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
