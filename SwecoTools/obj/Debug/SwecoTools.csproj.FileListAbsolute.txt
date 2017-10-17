@@ -7,7 +7,6 @@ H:\5. Programmering\SwecoTools\obj\Debug\SwecoTools.dll
 H:\5. Programmering\SwecoTools\obj\Debug\SwecoTools.pdb
 H:\5. Programmering\cLion\SwecoTools\bin\SwecoTools.dll
 H:\5. Programmering\cLion\SwecoTools\bin\SwecoTools.pdb
-H:\5. Programmering\cLion\SwecoTools\bin\ExcelTools.pdb
 H:\5. Programmering\cLion\SwecoTools\obj\Debug\SwecoTools.csprojResolveAssemblyReference.cache
 H:\5. Programmering\cLion\SwecoTools\obj\Debug\SwecoTools.dll
 H:\5. Programmering\cLion\SwecoTools\obj\Debug\SwecoTools.pdb

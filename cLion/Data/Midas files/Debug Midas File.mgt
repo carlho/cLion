@@ -1,0 +1,147 @@
+;---------------------------------------------------------------------------
+;  midas Gen Text(MGT) File.
+;  Date : 2017/10/10
+;---------------------------------------------------------------------------
+
+*VERSION
+   8.6.5
+
+*UNIT    ; Unit System
+; FORCE, LENGTH, HEAT, TEMPER
+   KN   , M, BTU, F
+
+*PROJINFO    ; Project Information
+   USER=Carl Hoff
+   ADDRESS=SWECO Structures
+
+*REBAR-MATL-CODE    ; Rebar Material Code
+; CONC_CODE, CONC_MDB, SRC_CODE, SRC_MDB
+ EN04(RC), Class A, ASTM(RC), Grade 60
+
+*NODE    ; Nodes
+; iNO, X, Y, Z
+     1, 0, 0, 0
+     2, 0, 11, 12
+
+*ELEMENT    ; Elements
+; iEL, TYPE, iMAT, iPRO, iN1, iN2, ANGLE, iSUB, EXVAL, iOPT(EXVAL2) ; Frame  Element
+; iEL, TYPE, iMAT, iPRO, iN1, iN2, ANGLE, iSUB, EXVAL, EXVAL2, bLMT ; Comp/Tens Truss
+; iEL, TYPE, iMAT, iPRO, iN1, iN2, iN3, iN4, iSUB, iWID , LCAXIS    ; Planar Element
+; iEL, TYPE, iMAT, iPRO, iN1, iN2, iN3, iN4, iN5, iN6, iN7, iN8     ; Solid  Element
+     1, BEAM  ,    1,     1,     1,     2,     0,     0
+
+*MATERIAL    ; Material
+; iMAT, TYPE, MNAME, SPHEAT, HEATCO, PLAST, TUNIT, bMASS, DAMPRATIO, [DATA1]           ; STEEL, CONC, USER
+; iMAT, TYPE, MNAME, SPHEAT, HEATCO, PLAST, TUNIT, bMASS, DAMPRATIO, [DATA2], [DATA2]  ; SRC
+; [DATA1] : 1, DB, NAME, CODE, USEELAST, ELAST
+; [DATA1] : 2, ELAST, POISN, THERMAL, DEN, MASS
+; [DATA1] : 3, Ex, Ey, Ez, Tx, Ty, Tz, Sxy, Sxz, Syz, Pxy, Pxz, Pyz, DEN, MASS         ; Orthotropic
+; [DATA2] : 1, DB, NAME, CODE, USEELAST, ELAST or 2, ELAST, POISN, THERMAL, DEN, MASS
+    1, STEEL, S355              , 0, 0, , C, NO, 0.02, 1, EN05(S)    ,            , S355          , NO, 2.1e+008
+
+*MATL-COLOR
+; iMAT, W_R, W_G, W_B, HF_R, HF_G, HF_B, HE_R, HE_G, HE_B, bBLEND, FACT
+    1, 128,   0, 128,  255,   0,   0,    0, 255,   0,  NO, 0.5
+
+
+*SECTION    ; Section
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, [DATA1], [DATA2]                    ; 1st line - DB/USER
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, BLT, D1, ..., D8, iCEL              ; 1st line - VALUE
+;       AREA, ASy, ASz, Ixx, Iyy, Izz                                               ; 2nd line
+;       CyP, CyM, CzP, CzM, QyB, QzB, PERI_OUT, PERI_IN, Cy, Cz                     ; 3rd line
+;       Y1, Y2, Y3, Y4, Z1, Z2, Z3, Z4, Zyy, Zzz                                    ; 4th line
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, ELAST, DEN, POIS, POIC, SF, THERMAL ; 1st line - SRC
+;       D1, D2, [SRC]                                                               ; 2nd line
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, 1, DB, NAME1, NAME2, D1, D2         ; 1st line - COMBINED
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, 2, D11, D12, D13, D14, D15, D21, D22, D23, D24
+; iSEC, TYPE, SNAME, [OFFSET2], bSD, bWE, SHAPE, iyVAR, izVAR, STYPE                ; 1st line - TAPERED
+;       DB, NAME1, NAME2                                                            ; 2nd line(STYPE=DB)
+;       [DIM1], [DIM2]                                                              ; 2nd line(STYPE=USER)
+;       D11, D12, D13, D14, D15, D16, D17, D18                                      ; 2nd line(STYPE=VALUE)
+;       AREA1, ASy1, ASz1, Ixx1, Iyy1, Izz1                                         ; 3rd line(STYPE=VALUE)
+;       CyP1, CyM1, CzP1, CzM1, QyB1, QzB1, PERI_OUT1, PERI_IN1, Cy1, Cz1           ; 4th line(STYPE=VALUE)
+;       Y11, Y12, Y13, Y14, Z11, Z12, Z13, Z14, Zyy1, Zyy2                          ; 5th line(STYPE=VALUE)
+;       D21, D22, D23, D24, D25, D26, D27, D28                                      ; 6th line(STYPE=VALUE)
+;       AREA2, ASy2, ASz2, Ixx2, Iyy2, Izz2                                         ; 7th line(STYPE=VALUE)
+;       CyP2, CyM2, CzP2, CzM2, QyB2, QzB2, PERI_OUT2, PERI_IN2, Cy2, Cz2           ; 8th line(STYPE=VALUE)
+;       Y21, Y22, Y23, Y24, Z21, Z22, Z23, Z24, Zyy2, Zzz2                          ; 9th line(STYPE=VALUE)
+; [DATA1] : 1, DB, NAME or 2, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10
+; [DATA2] : CCSHAPE or iCEL or iN1, iN2
+; [SRC]  : 1, DB, NAME1, NAME2 or 2, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, iN1, iN2
+; [DIM1], [DIM2] : D1, D2, D3, D4, D5, D6, D7, D8
+; [OFFSET] : OFFSET, iCENT, iREF, iHORZ, HUSER, iVERT, VUSER
+; [OFFSET2]: OFFSET, iCENT, iREF, iHORZ, HUSERI, HUSERJ, iVERT, VUSERI, VUSERJ
+    1, DBUSER    , HEA260            , CC, 0, 0, 0, 0, 0, 0, YES, NO, H  , 1, UNI, HEA260
+
+*SECT-COLOR
+; iSEC, W_R, W_G, W_B, HF_R, HF_G, HF_B, HE_R, HE_G, HE_B, bBLEND, FACT
+    1, 128,   0, 128,  255,   0,   0,    0, 255,   0,  NO, 0.5
+
+*DGN-SECT
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, [DATA1], [DATA2]                    ; 1st line - DB/USER
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, BLT, D1, ..., D8, iCEL              ; 1st line - VALUE
+;       AREA, ASy, ASz, Ixx, Iyy, Izz                                               ; 2nd line
+;       CyP, CyM, CzP, CzM, QyB, QzB, PERI_OUT, PERI_IN, Cy, Cz                     ; 3rd line
+;       Y1, Y2, Y3, Y4, Z1, Z2, Z3, Z4, Zyy, Zzz                                    ; 4th line
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, ELAST, DEN, POIS, POIC, SF, THERMAL ; 1st line - SRC
+;       D1, D2, [SRC]                                                               ; 2nd line
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, 1, DB, NAME1, NAME2, D1, D2         ; 1st line - COMBINED
+; iSEC, TYPE, SNAME, [OFFSET], bSD, bWE, SHAPE, 2, D11, D12, D13, D14, D15, D21, D22, D23, D24
+; iSEC, TYPE, SNAME, [OFFSET2], bSD, bWE, SHAPE, iyVAR, izVAR, STYPE                ; 1st line - TAPERED
+;       DB, NAME1, NAME2                                                            ; 2nd line(STYPE=DB)
+;       [DIM1], [DIM2]                                                              ; 2nd line(STYPE=USER)
+;       D11, D12, D13, D14, D15, D16, D17, D18                                      ; 2nd line(STYPE=VALUE)
+;       AREA1, ASy1, ASz1, Ixx1, Iyy1, Izz1                                         ; 3rd line(STYPE=VALUE)
+;       CyP1, CyM1, CzP1, CzM1, QyB1, QzB1, PERI_OUT1, PERI_IN1, Cy1, Cz1           ; 4th line(STYPE=VALUE)
+;       Y11, Y12, Y13, Y14, Z11, Z12, Z13, Z14, Zyy1, Zyy2                          ; 5th line(STYPE=VALUE)
+;       D21, D22, D23, D24, D25, D26, D27, D28                                      ; 6th line(STYPE=VALUE)
+;       AREA2, ASy2, ASz2, Ixx2, Iyy2, Izz2                                         ; 7th line(STYPE=VALUE)
+;       CyP2, CyM2, CzP2, CzM2, QyB2, QzB2, PERI_OUT2, PERI_IN2, Cy2, Cz2           ; 8th line(STYPE=VALUE)
+;       Y21, Y22, Y23, Y24, Z21, Z22, Z23, Z24, Zyy2, Zzz2                          ; 9th line(STYPE=VALUE)
+; [DATA1] : 1, DB, NAME or 2, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10
+; [DATA2] : CCSHAPE or iCEL or iN1, iN2
+; [SRC]  : 1, DB, NAME1, NAME2 or 2, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, iN1, iN2
+; [DIM1], [DIM2] : D1, D2, D3, D4, D5, D6, D7, D8
+; [OFFSET] : OFFSET, iCENT, iREF, iHORZ, HUSER, iVERT, VUSER
+; [OFFSET2]: OFFSET, iCENT, iREF, iHORZ, HUSERI, HUSERJ, iVERT, VUSERI, VUSERJ
+    1, DBUSER    , HEA260            , CC, 0, 0, 0, 0, 0, 0, YES, NO, H  , 1, UNI, HEA260
+
+*STLDCASE    ; Static Load Cases
+; LCNAME, LCTYPE, DESC
+   LC1  , D , 
+
+
+*CONSTRAINT    ; Supports
+; NODE_LIST, CONST(Dx,Dy,Dz,Rx,Ry,Rz), GROUP
+   1, 111111, 
+
+*USE-STLD, LC1
+
+*CONLOAD    ; Nodal Loads
+; NODE_LIST, FX, FY, FZ, MX, MY, MZ, GROUP
+   2, 2, 4, 1, 0, 0, 0, 
+
+; End of data for load case [LC1] -------------------------
+
+
+*LC-COLOR    ; Diagram Color for Load Case
+; ANAL, LCNAME, iR1(ALL), iG1(ALL), iB1(ALL), iR2(MIN), iG2(MIN), iB2(MIN), iR3(MAX), iG2(MAX), iB2(MAX)
+ ST, LC1, 85, 0, 192, 0, 157, 192, 0, 128, 57
+
+*DGN-MATL    ; Modify Steel(Concrete) Material
+; iMAT, TYPE, MNAME, [DATA1]                                    ; STEEL
+; iMAT, TYPE, MNAME, [DATA2], [R-DATA], FCI, bSERV, SHORT, LONG ; CONC
+; iMAT, TYPE, MNAME, [DATA3], [DATA2], [R-DATA]                 ; SRC
+; iMAT, TYPE, MNAME, [DATA5]                                    ; STEEL(None) & KSCE-ASD05
+; [DATA1] : 1, DB, CODE, NAME or 2, ELAST, POISN, FU, FY1, FY2, FY3, FY4
+;           FY5, FY6, AFT, AFT2, AFT3, FY, AFV, AFV2, AFV3
+; [DATA2] : 1, DB, CODE, NAME or 2, FC, CHK, LAMBDA
+; [DATA3] : 1, DB, CODE, NAME or 2, ELAST, FU, FY1, FY2, FY3, FY4
+;              FY5, FY6, AFT, AFT2, AFT3, FY, AFV, AFV2, AFV3
+; [DATA4] : 1, DB, CODE, NAME or 2, FC
+; [DATA5] : 3, ELAST, POISN, AL1, AL2, AL3, AL4, AL5, AL6, AL7, AL8, AL9, AL10
+;              MIN1, MIN2, MIN3
+; [R-DATA]: RBCODE, RBMAIN, RBSUB, FY(R), FYS
+    1, STEEL, S355              , 1, EN05(S)    ,            ,S355          , 2, 0, , , , 0, 0,NO,0.0000e+000,     0,, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0.0000e+000,     0,, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0.0000e+000,     0,, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0,
+
+*ENDDATA

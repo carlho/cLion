@@ -58,10 +58,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ReadTunnelProfileComponent.cs" />
+    <Compile Include="ReadTrackProfileComponentExcel.cs" />
     <Compile Include="ReadExcelComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadTrackProfileComponentXml.cs" />
+    <Compile Include="RhinoUtilities.cs" />
+    <Compile Include="TrackCurveUtilities.cs" />
+    <Compile Include="TrackCurve\DeconstructTrackCurve.cs" />
+    <Compile Include="TrackCurve\TrackCurve.cs" />
+    <Compile Include="TrackCurve\TrackCurveGoo.cs" />
+    <Compile Include="TrackCurve\TrackCurveParameter.cs" />
+    <Compile Include="TrackSection\DeconstructTrackSectionComponent.cs" />
+    <Compile Include="TrackSection\FindTrackSection.cs" />
+    <Compile Include="TrackSection\TrackSectionConnection.cs" />
+    <Compile Include="TrackSection\TrackSection.cs" />
+    <Compile Include="TrackSection\TrackSectionGoo.cs" />
+    <Compile Include="TrackSection\TrackSectionParameter.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(ProjectName).dll" "C:\Users\secaho\AppData\Roaming\Grasshopper\Libraries\$(ProjectName).gha"
